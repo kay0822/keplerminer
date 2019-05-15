@@ -23,7 +23,8 @@ hasher_c.o: hasher_c.cu scrypt_cores.cu
 	nvcc $(NVFLAGS) -dlink -o hasher_c.o hasher_c.cu hasher.cu
 
 hasher_c.so: hasher_c.cu hasher.o scrypt_cores.cu
-	nvcc -Xcompiler -fPIC $(NVFLAGS) --shared -o hasher_c.so hasher_c.cu hasher.o
+	#nvcc -Xcompiler -fPIC $(NVFLAGS) --shared -o hasher_c.so hasher_c.cu hasher.o
+	nvcc -lib -Xcompiler -fPIC $(NVFLAGS)  -o hasher_c.so hasher_c.cu hasher.o
 
 clean:
 	@rm -f key_per_thread hasher_bench hasher_test *.o
